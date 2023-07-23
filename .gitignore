@@ -1,9 +1,8 @@
-.idea/
-FactionsX-Parent.iml
-copy-to-server.sh
-.DS_Store
-debug/
-copy.sh
-.mvn/settings.xml
+.gradle
+.idea
+
 build
-.gradle/
+jars
+
+api/build
+api/.gradle

@@ -1,2 +1,2 @@
-# Factions
-A factions plugin
+# CrazyUnions
+A hard fork of FactionsX
