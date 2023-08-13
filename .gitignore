@@ -1,8 +1,13 @@
 .gradle
 .idea
 
-build
-jars
+buildSrc/.gradle
+buildSrc/build
 
-api/build
-api/.gradle
+paper/.gradle
+paper/build
+
+addons/build
+addons/.gradle
+
+jars

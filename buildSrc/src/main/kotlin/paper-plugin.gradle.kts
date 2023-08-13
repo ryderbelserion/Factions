@@ -1,9 +1,7 @@
 plugins {
-    id("root-plugin")
-
-    id("com.github.johnrengelman.shadow")
-
     id("io.papermc.paperweight.userdev")
+
+    id("publish-plugin")
 }
 
 repositories {
@@ -11,10 +9,14 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle("1.19.4-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.20.1-R0.1-SNAPSHOT")
 }
 
 tasks {
+    reobfJar {
+        outputJar.set(file("$buildDir/libs/${rootProject.name}-${project.version}.jar"))
+    }
+
     assemble {
         dependsOn(reobfJar)
     }

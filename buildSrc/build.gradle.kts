@@ -5,18 +5,17 @@ plugins {
 repositories {
     gradlePluginPortal()
 
-    maven("https://repo.crazycrew.us/api/")
+    maven("https://repo.papermc.io/repository/maven-public/")
 }
 
 dependencies {
-    implementation(libs.paperweight)
+    implementation("io.papermc.paperweight", "paperweight-userdev", "1.5.5")
 
-    implementation(libs.minotaur)
-    //implementation(libs.hangar)
+    implementation("org.jetbrains.kotlin", "kotlin-gradle-plugin", "1.9.0")
 
-    implementation(libs.shadow)
+    implementation("io.papermc", "hangar-publish-plugin", "0.0.5")
 
-    implementation(libs.turtle)
+    implementation("com.github.johnrengelman", "shadow", "8.1.1")
 
-    implementation(libs.kotlin)
+    implementation("com.modrinth.minotaur", "Minotaur", "2.8.2")
 }

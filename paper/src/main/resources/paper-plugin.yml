@@ -1,0 +1,6 @@
+name: '${name}'
+main: '${group}'
+
+version: '${version}'
+api-version: '${apiVersion}'
+description: '${description}'

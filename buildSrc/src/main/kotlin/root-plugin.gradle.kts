@@ -1,24 +1,30 @@
-import org.gradle.kotlin.dsl.maven
-
 plugins {
     `java-library`
     `maven-publish`
+
+    kotlin("jvm")
+
+    id("com.github.johnrengelman.shadow")
+}
+
+dependencies {
+    api(kotlin("stdlib"))
 }
 
 repositories {
-    maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
-
-    maven("https://repo.codemc.org/repository/maven-public/")
-
-    maven("https://repo.aikar.co/content/groups/aikar/")
-
-    maven("https://repo.triumphteam.dev/snapshots/")
-
-    maven("https://repo.crazycrew.us/api/")
-
-    maven("https://jitpack.io/")
+    maven("https://jitpack.io")
 
     mavenCentral()
+}
+
+kotlin {
+    jvmToolchain(17)
+
+    sourceSets.all {
+        languageSettings {
+            languageVersion = "2.0"
+        }
+    }
 }
 
 java {
@@ -26,6 +32,13 @@ java {
 }
 
 tasks {
+    compileKotlin {
+        kotlinOptions {
+            jvmTarget = "17"
+            javaParameters = true
+        }
+    }
+
     compileJava {
         options.encoding = Charsets.UTF_8.name()
         options.release.set(17)
