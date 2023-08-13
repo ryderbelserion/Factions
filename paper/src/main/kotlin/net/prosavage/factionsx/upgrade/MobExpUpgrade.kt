@@ -6,12 +6,15 @@ import net.prosavage.factionsx.util.SerializableItem
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.entity.EntityDeathEvent
+import org.bukkit.plugin.java.JavaPlugin
 import kotlin.math.roundToInt
 
 class MobExpUpgrade(name: String, item: SerializableItem, maxLevelLore: List<String>, costLevel: Map<Int, LevelInfo>)
     : Upgrade(name, item, maxLevelLore, costLevel) {
 
-    override val upgradeListener = MobExpUpgradeListener(FactionsX.instance, this)
+    private val plugin = JavaPlugin.getPlugin(FactionsX::class.java)
+
+    override val upgradeListener = MobExpUpgradeListener(this.plugin, this)
 
     class MobExpUpgradeListener(override val factionsX: FactionsX, override val upgrade: Upgrade) : UpgradeListener {
 

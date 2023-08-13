@@ -54,7 +54,7 @@ enum class ScoreboardType {
  * Start monitoring the [Scoreboard].
  */
 internal fun startScoreboardMonitor(scoreboard: Scoreboard?) {
-    //Bukkit.getScheduler().runTaskTimerAsynchronously(FactionsX.instance, Runnable {
+    //Bukkit.getScheduler().runTaskTimerAsynchronously(this.plugin, Runnable {
     //    if (!scoreboardOptions.enabled || !scoreboardOptions.internal || scoreboard == null) return@Runnable
     //    PlayerManager.getOnlineFPlayers().filter(FPlayer::scoreboardActive).forEach(scoreboard::show)
     //}, 20, 5)

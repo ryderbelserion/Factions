@@ -70,7 +70,7 @@ class ChatListener : Listener {
                 factionPlayer.message(Message.commandUpgradeClaimIconAssignCancelled)
             } else {
                 factionPlayer.assigningClaimIcon?.icon = Material.matchMaterial(event.message)!!
-                Bukkit.getScheduler().runTask(FactionsX.instance, Runnable {
+                Bukkit.getScheduler().runTask(this.plugin, Runnable {
                     UpgradesTerritoryManageMenu.getInv(faction, factionPlayer.assigningClaimIcon!!)?.open(player)
                     factionPlayer.assigningClaimIcon = null
                 })
@@ -83,7 +83,7 @@ class ChatListener : Listener {
                 factionPlayer.message(Message.commandUpgradeClaimRenameCancelled)
             } else {
                 factionPlayer.namingClaim?.name = event.message
-                Bukkit.getScheduler().runTask(FactionsX.instance, Runnable {
+                Bukkit.getScheduler().runTask(this.plugin, Runnable {
                     UpgradesTerritoryManageMenu.getInv(faction, factionPlayer.namingClaim!!)?.open(player)
                     factionPlayer.namingClaim = null
                 })

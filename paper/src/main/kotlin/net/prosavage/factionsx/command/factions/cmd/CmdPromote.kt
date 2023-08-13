@@ -67,7 +67,7 @@ class CmdPromote : FCommand() {
             val confirmationEvent = ConfirmationEvent(info.faction!!, fPlayer, ConfirmAction.PROMOTE)
             Bukkit.getPluginManager().callEvent(confirmationEvent)
 
-            fPlayer.startConfirmProcess(FactionsX.instance, ConfirmAction.PROMOTE)
+            fPlayer.startConfirmProcess(this.plugin, ConfirmAction.PROMOTE)
             return false
         }
 
@@ -81,7 +81,7 @@ class CmdPromote : FCommand() {
                 .apply { role = roleToBePromotedTo }
                 .takeIf { it.role == factionRoles.getApexRole() }
                 ?.let {
-                    FactionsX.instance.logger.info("Transferring ownership of ${info.faction?.tag} from ${info.faction?.getLeader()?.name} to ${it.name}")
+                    this.plugin.logger.info("Transferring ownership of ${info.faction?.tag} from ${info.faction?.getLeader()?.name} to ${it.name}")
                     it.getFaction().setLeader(PlayerManager.getFPlayer(it.uuid)!!)
                     it.getFaction()
                     fPlayer.role = factionRoles.getDemotionRole(fPlayer)

@@ -15,12 +15,15 @@ import org.bukkit.Chunk
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.WorldBorder
+import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
 import java.nio.charset.Charset
 import java.util.*
 import kotlin.collections.HashMap
 
 object Factions {
+
+    private val plugin = JavaPlugin.getPlugin(FactionsX::class.java)
 
     @Transient
     private val instance = this
@@ -53,7 +56,7 @@ object Factions {
         logColored("&eAttempting to migrate factions...")
 
         // make sure file is present
-        val file = File(FactionsX.instance.dataFolder.resolve("data"), "factions.json")
+        val file = File(this.plugin.dataFolder.resolve("data"), "factions.json")
 
         if (!file.exists()) {
             return

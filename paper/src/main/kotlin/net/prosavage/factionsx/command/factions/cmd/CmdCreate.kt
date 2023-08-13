@@ -68,7 +68,7 @@ class CmdCreate : FCommand() {
             if (it.isCancelled) return false
         }
 
-        val faction = FactionManager.createNewFaction(FactionsX.instance, factionTag, Factions.nextFactionId++, fplayer) {
+        val faction = FactionManager.createNewFaction(this.plugin, factionTag, Factions.nextFactionId++, fplayer) {
             val console = Bukkit.getConsoleSender()
             factionCreationCommandsToExecute.forEach {
                 Bukkit.dispatchCommand(console, it.format(

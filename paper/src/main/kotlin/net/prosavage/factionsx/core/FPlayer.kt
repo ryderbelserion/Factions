@@ -397,7 +397,7 @@ data class FPlayer(val uuid: UUID, var name: String) {
 
     private fun processFall(fPlayer: FPlayer) {
         fPlayer.isFalling = true
-        Bukkit.getScheduler().runTaskLater(FactionsX.instance, Runnable {
+        Bukkit.getScheduler().runTaskLater(this.plugin, Runnable {
             fPlayer.isFalling = false
         }, 200L)
     }

@@ -4,10 +4,13 @@ import net.prosavage.factionsx.FactionsX
 import net.prosavage.factionsx.util.MemberAction
 import net.prosavage.factionsx.util.PlayerAction
 import org.bukkit.ChatColor
+import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
 import java.lang.StringBuilder
 
 abstract class DocumentationProvider {
+
+    private val plugin = JavaPlugin.getPlugin(FactionsX::class.java)
 
     abstract fun getIdentifier(): String
 
@@ -45,7 +48,7 @@ abstract class DocumentationProvider {
     }
 
     fun writeDocFile(name: String, content: String) {
-        File(FactionsX.instance.dataFolder, "docs" + "/${name}.html").also {
+        File(this.plugin.dataFolder, "docs" + "/${name}.html").also {
             it.parentFile.mkdirs()
             it.createNewFile()
         }.writeText(content)

@@ -7,11 +7,15 @@ import org.bukkit.entity.EntityType
 import org.bukkit.event.EventHandler
 import org.bukkit.event.entity.EntityDeathEvent
 import org.bukkit.inventory.ItemStack
+import org.bukkit.plugin.java.JavaPlugin
 import kotlin.math.ceil
 
 class MobDropMultiplierUpgrade(targetEntity: EntityType, name: String, item: SerializableItem, maxLevelLore: List<String>, costLevel: Map<Int, LevelInfo>)
     : Upgrade(name, item, maxLevelLore, costLevel) {
-    override val upgradeListener = MobDropMultiplierListener(targetEntity, FactionsX.instance, this)
+
+    private val plugin = JavaPlugin.getPlugin(FactionsX::class.java)
+
+    override val upgradeListener = MobDropMultiplierListener(targetEntity, this.plugin, this)
 
     class MobDropMultiplierListener(val targetMob: EntityType, override val factionsX: FactionsX, override val upgrade: Upgrade) : UpgradeListener {
 

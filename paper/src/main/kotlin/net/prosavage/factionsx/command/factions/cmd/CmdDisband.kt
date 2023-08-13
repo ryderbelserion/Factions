@@ -37,7 +37,7 @@ class CmdDisband : FCommand() {
                 val confirmationEvent = ConfirmationEvent(fplayer.getFaction(), fplayer, ConfirmAction.DISBAND)
                 Bukkit.getPluginManager().callEvent(confirmationEvent)
 
-                fplayer.startConfirmProcess(FactionsX.instance, ConfirmAction.DISBAND)
+                fplayer.startConfirmProcess(this.plugin, ConfirmAction.DISBAND)
                 return false
             }
 

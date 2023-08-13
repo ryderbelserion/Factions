@@ -6,8 +6,11 @@ import net.prosavage.factionsx.upgrade.*
 import net.prosavage.factionsx.util.Relation
 import org.bukkit.Material
 import org.bukkit.entity.EntityType
+import org.bukkit.plugin.java.JavaPlugin
 
 object UpgradeManager {
+
+    private val plugin = JavaPlugin.getPlugin(FactionsX::class.java)
 
     private val upgrades: HashMap<Upgrade, UpgradeScope> = hashMapOf()
 
@@ -21,7 +24,7 @@ object UpgradeManager {
         }
 
         upgrades[upgrade] = scope
-        upgrade.registerUpgradeListener(FactionsX.instance)
+        upgrade.registerUpgradeListener(this.plugin)
     }
 
     fun deRegisterUpgrade(factionsX: FactionsX, upgrade: Upgrade) {
@@ -32,7 +35,7 @@ object UpgradeManager {
     fun deRegisterUpgradeByName(name: String) {
         val upgrade = getUpgradeByName(name)
         if (upgrade != null) {
-            deRegisterUpgrade(FactionsX.instance, upgrade)
+            deRegisterUpgrade(this.plugin, upgrade)
         }
     }
 

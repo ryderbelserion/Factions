@@ -22,7 +22,6 @@ import kotlin.time.ExperimentalTime
 class FactionsX : JavaPlugin() {
 
     companion object {
-        lateinit var instance: FactionsX
         //lateinit var baseCommand: FactionsBaseCommand
         //lateinit var baseAdminCommand: FactionsAdminBaseCommand
         //lateinit var addonManager: AddonManager
@@ -50,8 +49,6 @@ class FactionsX : JavaPlugin() {
 
     @ExperimentalTime
     override fun onEnable() {
-        instance = this
-
         /*
         super.onEnable()
         FactionsX.logger = super.getLogger()

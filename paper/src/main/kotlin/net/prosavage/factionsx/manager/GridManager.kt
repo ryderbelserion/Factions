@@ -29,9 +29,13 @@ import net.prosavage.factionsx.util.format
 import net.prosavage.factionsx.util.getMaterial
 import net.prosavage.factionsx.util.isAnyAir
 import org.bukkit.*
+import org.bukkit.plugin.java.JavaPlugin
 import kotlin.math.roundToInt
 
 object GridManager {
+
+    private val plugin = JavaPlugin.getPlugin(FactionsX::class.java)
+
     fun claim(faction: Faction, fLocation: FLocation, fPlayer: FPlayer? = null) {
         Grid.claimGrid[fLocation] = faction.id
 
@@ -49,7 +53,7 @@ object GridManager {
 
         // attempt to set home if option is enabled.
         if (factionFirstClaimAutoSetHome) {
-            Bukkit.getScheduler().runTaskAsynchronously(FactionsX.instance, Runnable {
+            Bukkit.getScheduler().runTaskAsynchronously(this.plugin, Runnable {
                 val snapshot = fLocation.getChunk()?.chunkSnapshot ?: return@Runnable
                 var location: Location? = null
 
@@ -105,11 +109,11 @@ object GridManager {
         //fPlayer.latestCreationChunkBorderFill = System.currentTimeMillis()
 
         // set barrier of specific block at chunk borders
-        Bukkit.getScheduler().runTaskAsynchronously(FactionsX.instance, Runnable {
+        Bukkit.getScheduler().runTaskAsynchronously(this.plugin, Runnable {
             val snapshot = fLocation.getChunk()?.chunkSnapshot ?: return@Runnable
             val locations = highestBlocksYAt(snapshot)
 
-            Bukkit.getScheduler().runTask(FactionsX.instance, Runnable {
+            Bukkit.getScheduler().runTask(this.plugin, Runnable {
                 locations.forEach { location -> location.block.type = factionCreationFillChunkBorderOnFirstClaimType.getMaterial()!! }
             })
         })

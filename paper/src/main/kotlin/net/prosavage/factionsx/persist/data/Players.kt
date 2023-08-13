@@ -6,11 +6,14 @@ import com.google.gson.JsonParser
 import net.prosavage.factionsx.FactionsX
 import net.prosavage.factionsx.core.FPlayer
 import net.prosavage.factionsx.util.logColored
+import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
 import java.nio.charset.Charset
 import java.util.concurrent.ConcurrentHashMap
 
 object Players {
+
+    private val plugin = JavaPlugin.getPlugin(FactionsX::class.java)
 
     @Transient
     private val instance = this
@@ -30,7 +33,7 @@ object Players {
     private fun migrate() {
         println("attempting pre-alts migration...")
 
-        val file = File(File(FactionsX.instance.dataFolder, "data"), "players.json")
+        val file = File(File(this.plugin.dataFolder, "data"), "players.json")
         if (!file.exists()) return
         val parser = JsonParser()
         val factionsInvitedToField = "factionsInvitedTo"

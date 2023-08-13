@@ -29,7 +29,7 @@ class PlaceholderAPIIntegration : PlaceholderExpansion(), Relational {
     }
 
     override fun getVersion(): String {
-        return FactionsX.instance.description.version
+        return this.plugin.description.version
     }
 
     override fun persist(): Boolean {

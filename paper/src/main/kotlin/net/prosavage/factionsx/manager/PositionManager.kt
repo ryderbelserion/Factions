@@ -13,6 +13,7 @@ import org.bukkit.Bukkit
 import org.bukkit.Color
 import org.bukkit.Location
 import org.bukkit.entity.Player
+import org.bukkit.plugin.java.JavaPlugin
 
 class PositionMonitor : Runnable {
 
@@ -29,7 +30,7 @@ class PositionMonitor : Runnable {
                     // This checks to make sure some other plugin has not disabled our fly, if they have, we disable it internally to not show particles etc.
                     val oldFlyStatus = fPlayer.isFFlying
                     if (fPlayer.isFFlying && !player.allowFlight) fPlayer.setFly(false)
-                    enemyNearBy = fPlayer.runFlyEnemyNearByCheck(FactionsX.instance, player)
+                    enemyNearBy = fPlayer.runFlyEnemyNearByCheck(this.plugin, player)
                     if (oldFlyStatus && !fPlayer.isFFlying) fPlayer.showFlyParticle(player, location)
                 }
 
@@ -130,7 +131,9 @@ fun teleportAsyncWithWarmup(player: Player, location: Location, delay: Long, the
     val fplayer = PlayerManager.getFPlayer(player)
     val loc = player.location
 
-    Bukkit.getScheduler().runTaskLater(FactionsX.instance, Runnable {
+    val plugin = JavaPlugin.getPlugin(FactionsX::class.java)
+
+    Bukkit.getScheduler().runTaskLater(plugin, Runnable {
 
         if (hasMoved(player.location, loc)) {
             //fplayer.message(Message.positionChangedTeleportWarmup)

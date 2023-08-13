@@ -3,6 +3,7 @@ package net.prosavage.factionsx.manager
 import net.prosavage.factionsx.FactionsX
 import net.prosavage.factionsx.persist.config.Config
 import org.bukkit.Bukkit
+import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitTask
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
@@ -10,6 +11,8 @@ import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeUnit.MILLISECONDS
 
 object TimerManager {
+
+    private val plugin = JavaPlugin.getPlugin(FactionsX::class.java)
 
     var monitoring: BukkitTask? = null
 
@@ -25,7 +28,7 @@ object TimerManager {
     }
 
     fun startMonitoring() {
-        monitoring = Bukkit.getScheduler().runTaskTimer(FactionsX.instance, Runnable {
+        monitoring = Bukkit.getScheduler().runTaskTimer(this.plugin, Runnable {
             for (entry in timedTasks) {
                 entry.value.hasEnded(entry.key, true)
             }

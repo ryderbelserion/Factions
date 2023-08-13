@@ -8,11 +8,14 @@ import org.bukkit.Material
 import org.bukkit.event.EventHandler
 import org.bukkit.event.block.BlockGrowEvent
 import org.bukkit.material.Crops
+import org.bukkit.plugin.java.JavaPlugin
 
 class WheatUpgrade(name: String, item: SerializableItem, maxLevelLore: List<String>, costLevel: Map<Int, LevelInfo>)
     : Upgrade(name, item, maxLevelLore, costLevel) {
 
-    override val upgradeListener = WheatInstantGrowListener(this, FactionsX.instance)
+    private val plugin = JavaPlugin.getPlugin(FactionsX::class.java)
+
+    override val upgradeListener = WheatInstantGrowListener(this, this.plugin)
 
     class WheatInstantGrowListener(override val upgrade: Upgrade, override val factionsX: FactionsX) : UpgradeListener {
 

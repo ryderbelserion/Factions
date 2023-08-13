@@ -6,11 +6,14 @@ import net.prosavage.factionsx.util.SerializableItem
 import org.bukkit.Material
 import org.bukkit.event.EventHandler
 import org.bukkit.event.block.BlockGrowEvent
+import org.bukkit.plugin.java.JavaPlugin
 
 class DoubleTallUpgrade(targetCrop: Material, name: String, item: SerializableItem, maxLevelLore: List<String>, costLevel: Map<Int, LevelInfo>)
     : Upgrade(name, item, maxLevelLore, costLevel) {
 
-    override val upgradeListener = DoubleTallUpgradeListener(targetCrop, this, FactionsX.instance)
+    private val plugin = JavaPlugin.getPlugin(FactionsX::class.java)
+
+    override val upgradeListener = DoubleTallUpgradeListener(targetCrop, this, this.plugin)
 
     class DoubleTallUpgradeListener(private val targetCrop: Material, override val upgrade: Upgrade, override val factionsX: FactionsX) : UpgradeListener {
         @EventHandler

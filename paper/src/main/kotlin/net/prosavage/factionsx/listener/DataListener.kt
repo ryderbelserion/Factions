@@ -9,8 +9,12 @@ import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerLoginEvent
 import org.bukkit.event.player.PlayerQuitEvent
+import org.bukkit.plugin.java.JavaPlugin
 
 class DataListener : Listener {
+
+    private val plugin = JavaPlugin.getPlugin(FactionsX::class.java)
+
     @EventHandler
     fun playerJoined(event: PlayerLoginEvent) {
         if (event.result != PlayerLoginEvent.Result.ALLOWED) return
@@ -20,7 +24,7 @@ class DataListener : Listener {
 
         Players.fplayers.compute(uuid) { _, fPlayer ->
             if (fPlayer == null) {
-                FactionsX.instance.logger.info("${player.name}'s FPlayer instance was created")
+                this.plugin.logger.info("${player.name}'s FPlayer instance was created")
                 return@compute PlayerManager.createNewFPlayer(player, false)
             }
 

@@ -7,8 +7,11 @@ import net.prosavage.factionsx.persist.config.*
 import net.prosavage.factionsx.persist.config.gui.AccessGUIConfig
 import net.prosavage.factionsx.persist.config.gui.PermsGUIConfig
 import net.prosavage.factionsx.persist.config.gui.UpgradesGUIConfig
+import org.bukkit.plugin.java.JavaPlugin
 
 object ConfigFileManager {
+
+    private val plugin = JavaPlugin.getPlugin(FactionsX::class.java)
 
     fun setup() {
         register(Config)
@@ -32,14 +35,14 @@ object ConfigFileManager {
     }
 
     fun load() {
-        files.forEach { it.load(FactionsX.instance) }
+        files.forEach { it.load(this.plugin) }
     }
 
     fun save() {
         files.forEach {
             // Load changes first, then save.
-            it.load(FactionsX.instance)
-            it.save(FactionsX.instance)
+            it.load(this.plugin)
+            it.save(this.plugin)
         }
     }
 }

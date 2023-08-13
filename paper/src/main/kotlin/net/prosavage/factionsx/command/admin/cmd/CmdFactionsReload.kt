@@ -7,10 +7,14 @@ import net.prosavage.factionsx.command.engine.FCommand
 import net.prosavage.factionsx.core.Permission
 import net.prosavage.factionsx.persist.Message
 import net.prosavage.factionsx.scoreboard.startScoreboardMonitor
+import org.bukkit.plugin.java.JavaPlugin
 import java.util.stream.Collectors
 import kotlin.system.measureTimeMillis
 
 class CmdFactionsReload : FCommand() {
+
+    private val plugin = JavaPlugin.getPlugin(FactionsX::class.java)
+
     init {
         aliases.add("reload")
 
@@ -26,7 +30,7 @@ class CmdFactionsReload : FCommand() {
         val hotReload = info.args.getOrNull(0)?.equals("hot-reload-jars") ?: false
 
         val time = measureTimeMillis {
-            val factionsX = FactionsX.instance
+            val factionsX = this.plugin
             factionsX.deRegisterUpgrades()
             factionsX.saveData()
             factionsX.registerUpgrades()
